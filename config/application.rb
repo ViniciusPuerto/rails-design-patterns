@@ -9,7 +9,8 @@ Bundler.require(*Rails.groups)
 module App
   class Application < Rails::Application
     config.load_defaults 7.0
-    config.api_only = true
+    config.autoload_paths += %W(#{config.root}/app/types)
     config.autoload_paths << Rails.root.join('app', 'value_objects')
+    config.api_only = true
   end
 end

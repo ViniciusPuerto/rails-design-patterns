@@ -3,9 +3,17 @@ class Money
 
   attr_reader :amount, :currency
 
-  def initialize(amount:, currency:)
+  def initialize(amount, currency = 'USD')
     @amount = amount
     @currency = currency
+  end
+
+  def self.parse(value, currency)
+    new(amount: value, currency: currency)
+  end
+
+  def self.zero(currency)
+    new(amount: 0, currency: currency)
   end
 
   def add(other)
@@ -29,7 +37,7 @@ class Money
   end
 
   def to_s
-    "#{currency} #{amount}"
+    "#{currency}#{amount}"
   end
 
   def ==(other)
